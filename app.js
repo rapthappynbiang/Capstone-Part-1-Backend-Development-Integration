@@ -32,5 +32,8 @@ require('./routes/address.routes')(app);
 //handling products routes
 require('./routes/product.routes')(app);
 
+//handling orders routes
+require('./routes/order.routes')(app);
+
 //exports the app module
 module.exports = app;
