@@ -100,10 +100,11 @@ exports.login = (req, res)=>{
            .end();
            return;
        }
-
+        
        //else compare the request password and the password store in the db
        bcrypt.compare(password, response[0].password)
        .then(result=>{
+           
             if(!result){
                 //if password is incorrect
                 res.setHeader('Content-Type', 'application/json')

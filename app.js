@@ -1,6 +1,7 @@
 //creating an express object
 const express = require('express');
 const app = express();
+
 const httpStatus = require('http-status-codes');
 bodyParser = require('body-parser');
 const cors = require('cors')
@@ -22,11 +23,14 @@ app.get("/", (req, res)=>{
     res.status(httpStatus.StatusCodes.OK).send("Welcome to upGrad-E-Shop")
 });
 
-  //HANDLING ALL USER ROUTES
-  require('./routes/user.routes')(app);
+//Handling user routes
+require('./routes/user.routes')(app);
 
-  //HANDLING ALL ADDRESS ROUTES
+//Handling /address routes
 require('./routes/address.routes')(app);
+
+//handling products routes
+require('./routes/product.routes')(app);
 
 //exports the app module
 module.exports = app;

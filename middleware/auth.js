@@ -28,12 +28,12 @@ const validateAccessToken = (req, res, next)=>{
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
        //if token is invalid
        if(err){
-           console.log(err);   
-        res.setHeader('Content-Type', 'application/json');
-        res.status(httpStatus.StatusCodes.FORBIDDEN)
-        .json({message: "Access Denied!"})
-        .end();
-        return;
+            console.log(err);   
+            res.setHeader('Content-Type', 'application/json');
+            res.status(httpStatus.StatusCodes.FORBIDDEN)
+            .json({message: "Access Denied!"})
+            .end();
+            return;
        }
 
        //Else if verfication is successful set request user as the decoded user from the token
