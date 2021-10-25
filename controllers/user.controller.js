@@ -30,7 +30,7 @@ exports.signUp = (req, res)=>{
     Users.find({email: req.body.email}).then(result=>{
         if(result.length != 0){
             res.setHeader('Content-Type', 'application/json');
-            res.status(httpStatus.StatusCodes.FORBIDDEN).json({message: "Try any other email, this email is already registered!"}).end();
+            res.status(httpStatus.StatusCodes.BAD_REQUEST).json({message: "Try any other email, this email is already registered!"}).end();
             return;
         }
 
@@ -126,7 +126,8 @@ exports.login = (req, res)=>{
                 .json({
                    email: response[0].email,
                    name: response[0].first_name+" "+response[0].last_name,
-                   isAuthenticated: true
+                   isAuthenticated: true,
+                   role: response[0].role
                 })
                 .end();
             }
