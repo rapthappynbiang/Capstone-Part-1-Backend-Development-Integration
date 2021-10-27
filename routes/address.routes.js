@@ -10,7 +10,10 @@ module.exports = app=>{
     const {validateAccessToken} = require('../middleware/auth');
 
     //POST /address
-    router.post('/address', validateAccessToken, address.addAddress)
+    router.post('/address', validateAccessToken, address.addAddress);
+
+   //GET /address
+    router.get('/address', validateAccessToken, address.getAddress)
 
     //use the router
     app.use('/api', router);
