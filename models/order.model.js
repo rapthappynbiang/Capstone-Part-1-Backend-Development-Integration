@@ -5,7 +5,7 @@ module.exports = mongoose=>{
           "order",
           mongoose.Schema({
               userId: {type: String, require: true},
-              productId: {type: Number, require: true},
+              productId: {type: String, require: true},
               addressId: {type: String, require: true},
               amount: {type:Number, require: true},
               orderDate: Date,

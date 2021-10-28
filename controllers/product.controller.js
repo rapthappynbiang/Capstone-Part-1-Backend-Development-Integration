@@ -84,7 +84,7 @@ exports.searchProductsCategories= (req, res)=>{
 exports.searchProductByID = (req, res)=>{
 
     //Find the products with the given id
-    Products.find({productId: req.params.id}).then(product=>{
+    Products.find({_id: req.params.id}).then(product=>{
 
         if(product == null){
             res.setHeader('Content-Type', 'application/json')
@@ -180,7 +180,7 @@ exports.updateProduct = (req, res)=>{
     //else update the product
     //find and update the product
     Products.findOneAndUpdate(
-        {productID: req.params.id}, 
+        {_id: req.params.id}, 
         updateData,
         {new: true})
         .then(updatedProductData=>{
@@ -213,7 +213,7 @@ exports.deleteProduct = (req, res)=>{
     }
 
     //else find the product with given id and delete it
-    Products.findOne({productId: req.params.id}).then(product=>{
+    Products.findOne({_id: req.params.id}).then(product=>{
         if(product == null){
             res.setHeader('Content-Type', 'application/json');
             res.status(httpStatus.StatusCodes.BAD_REQUEST)
@@ -222,7 +222,7 @@ exports.deleteProduct = (req, res)=>{
         }
 
         //else delete the product
-        Products.findOneAndDelete({productID: req.params.id}).then(()=>{
+        Products.findOneAndDelete({_id: req.params.id}).then(()=>{
             res.setHeader('Content-Type', 'application/json');
             res.status(httpStatus.StatusCodes.OK)
             .json({message: `Product with ID - ${req.params.id} deleted successfully!`})

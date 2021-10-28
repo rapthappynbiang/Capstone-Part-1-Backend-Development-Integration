@@ -181,7 +181,7 @@ describe("Testing CRUD Apis for upGrad-E-Shop", ()=>{
         //Please provide valid product id
         it("it should get product with given product id when hitting /api/products/:id", (done)=>{
             chai.request(app)
-            .get('/api/products/'+/**ENTER ANY PRODUCT ID HERE */ 12694406)
+            .get('/api/products/'+/**ENTER ANY PRODUCT ID HERE label by _id */ "6176ba80428592359c6255cf")
             .end((err, response)=>{
             expect(err).to.be.a('null');
             response.should.have.status(200);
@@ -253,7 +253,7 @@ describe("Testing CRUD Apis for upGrad-E-Shop", ()=>{
 
 
         //Testing PUT /products/:id api
-        //lets insert some dummy data before actually testing this api just to initialize the productId
+        //lets insert some dummy data before actually testing this api just to initialize the _id
         //create a new Product object
         var data = Products({
             "productId": Math.floor(Math.random()*1000000),
@@ -285,7 +285,7 @@ describe("Testing CRUD Apis for upGrad-E-Shop", ()=>{
             }
 
             chai.request(app)
-            .put('/api/products/'+ data.productId)
+            .put('/api/products/'+ data._id)
             .set('Authorization', `Bearer ${token}`)
             .send(updatedData)
             .end((err, response)=>{
@@ -301,13 +301,13 @@ describe("Testing CRUD Apis for upGrad-E-Shop", ()=>{
         //This api requires authentication and admin authrization
         it("It should get status 200 OK when hitting DELETE /api/products/:id",(done)=>{
             chai.request(app)
-            .delete('/api/products/'+data.productId)
+            .delete('/api/products/'+data._id)
             .set('Authorization', `Bearer ${token}`)
             .end((err, response)=>{
                 expect(err).to.be.a('null');
                 response.should.have.status(200);
                 response.body.should.be.a('object');
-                response.body.message.should.be.eql(`Product with ID - ${data.productId} deleted successfully!`)
+                response.body.message.should.be.eql(`Product with ID - ${data._id} deleted successfully!`)
                 done();
             })
 
@@ -341,7 +341,7 @@ describe("Testing CRUD Apis for upGrad-E-Shop", ()=>{
                /*****PLEASE ENSURE TO ENTER A id by the field name productId not the _id****/
                /**the addressId is the _id field of the address document*/
               .send({
-                  "productId": 65237948,
+                  "productId": "6176ba80428592359c6255cf",
                   "addressId": "61705c06d5d46bbaef3382bd",  
                   "quantity": 1
               })
